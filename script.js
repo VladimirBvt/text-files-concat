@@ -17,9 +17,21 @@ getFiles('files')
     .then(files => console.log(files))
     .catch(e => console.error(e));
 
-fs.readFile('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', 'utf8',
+// чтение одного конкретного файла
+fs.readFile('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-2/file-2-1.txt', 'utf8',
             function (error, data) {
-                console.log("Асинхронное чтение файла:");
+                console.log('Асинхронное чтение файла:');
                 if(error) throw error; // если возникла ошибка
                 console.log(data);  // выводим считанные данные
+});
+
+// дозаписывает в файл строки (позже содержимое предыдущего файла - вставить после чтения)
+fs.appendFileSync('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', 'Привет мир!');
+
+fs.appendFile('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', 'Привет МИД!', function(error){
+    if(error) throw error; // если возникла ошибка
+
+    console.log('Запись файла завершена. Содержимое файла:');
+    let data = fs.readFileSync('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', 'utf8');
+    console.log(data);  // выводим считанные данные
 });
