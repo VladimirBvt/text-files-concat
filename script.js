@@ -13,12 +13,26 @@ async function getFiles(dir) {
     return files.reduce((a, f) => a.concat(f), []);
 }
 
+const iterate = function (paths) {
+    for (let i = 1; i < paths.length; i ++) {
+        fs.readFile(paths[i], 'utf8',
+            function (error, data) {
+                fs.appendFileSync(paths[0], data);
+                if(error) throw error; // если возникла ошибка
+            });
+    }
+};
+
+//getFiles('files')
+//    .then(files => console.log(files))
+//    .catch(e => console.error(e));
+
 getFiles('files')
-    .then(files => console.log(files))
+    .then(files => iterate(files))
     .catch(e => console.error(e));
 
 // чтение одного конкретного файла
-fs.readFile('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-2/file-2-1.txt', 'utf8',
+/*fs.readFile('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-2/file-2-1.txt', 'utf8',
             function (error, data) {
                 fs.appendFileSync('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', data);
                 console.log('Асинхронное чтение файла:');
@@ -37,5 +51,5 @@ const wrigting = function (pathRead, pathWrite) {
         let data = fs.readFileSync('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', 'utf8');
         console.log(data);  // выводим считанные данные
     });
-};
+};*/
 
