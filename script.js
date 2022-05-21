@@ -16,3 +16,10 @@ async function getFiles(dir) {
 getFiles('files')
     .then(files => console.log(files))
     .catch(e => console.error(e));
+
+fs.readFile('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', 'utf8',
+            function (error, data) {
+                console.log("Асинхронное чтение файла:");
+                if(error) throw error; // если возникла ошибка
+                console.log(data);  // выводим считанные данные
+});
