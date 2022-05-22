@@ -19,6 +19,7 @@ const iterate = function (paths) {
             function (error, data) {
                 fs.appendFileSync(paths[0], data);
                 if(error) throw error;
+                paths.sort();
             });
     }
 };
