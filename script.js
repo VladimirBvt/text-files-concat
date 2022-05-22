@@ -18,38 +18,11 @@ const iterate = function (paths) {
         fs.readFile(paths[i], 'utf8',
             function (error, data) {
                 fs.appendFileSync(paths[0], data);
-                if(error) throw error; // если возникла ошибка
+                if(error) throw error;
             });
     }
 };
 
-//getFiles('files')
-//    .then(files => console.log(files))
-//    .catch(e => console.error(e));
-
 getFiles('files')
     .then(files => iterate(files))
     .catch(e => console.error(e));
-
-// чтение одного конкретного файла
-/*fs.readFile('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-2/file-2-1.txt', 'utf8',
-            function (error, data) {
-                fs.appendFileSync('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', data);
-                console.log('Асинхронное чтение файла:');
-                if(error) throw error; // если возникла ошибка
-                console.log(data);  // выводим считанные данные
-});
-
-const wrigting = function (pathRead, pathWrite) {
-    // дозаписывает в файл строки (позже содержимое предыдущего файла - вставить после чтения)
-    fs.appendFileSync('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', 'Привет мир!');
-
-    fs.appendFile('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', 'Привет МИД!', function(error){
-        if(error) throw error; // если возникла ошибка
-
-        console.log('Запись файла завершена. Содержимое файла:');
-        let data = fs.readFileSync('/Users/vladimir/WebstormProjects/HTML-academy/text-files-concat/files/folder-1/file-1-1.txt', 'utf8');
-        console.log(data);  // выводим считанные данные
-    });
-};*/
-
